@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Bloger</title>
+		<!-- Description, Keywords and Author -->
+		<meta name="description" content="Your description">
+		<meta name="keywords" content="Your,Keywords">
+		<meta name="author" content="ResponsiveWebInc">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!-- Styles -->
+		<!-- Bootstrap CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- Font awesome CSS -->
+		<link href="css/font-awesome.min.css" rel="stylesheet">		
+		<!-- Custom CSS -->
+		<link href="css/style.css" rel="stylesheet">
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="#">
+
+<script>
+$(document).ready(function() {
+//obtenemos el valor de los input
+
+$('#adicionar').click(function() {
+  var año = document.getElementById("año").value;
+  var apellido = document.getElementById("Institucion").value;
+  var cedula = document.getElementById("Lugar").value;
+  var i = 1; //contador para asignar id al boton que borrara la fila
+  var fila = '<tr id="row' + i + '"><td>' + año + '</td><td>' + apellido + '</td><td>' + cedula + '</td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">Quitar</button></td></tr>'; //esto seria lo que contendria la fila
+
+  i++;
+
+  $('#mytable tr:first').after(fila);
+    $("#adicionados").text(""); //esta instruccion limpia el div adicioandos para que no se vayan acumulando
+    var nFilas = $("#mytable tr").length;
+    $("#adicionados").append(nFilas - 1);
+    //le resto 1 para no contar la fila del header
+    document.getElementById("Institucion").value ="";
+    document.getElementById("Lugar").value = "";
+    document.getElementById("año").value = "";
+    document.getElementById("año").focus();
+  });
+$(document).on('click', '.btn_remove', function() {
+  var button_id = $(this).attr("id");
+    //cuando da click obtenemos el id del boton
+    $('#row' + button_id + '').remove(); //borra la fila
+    //limpia el para que vuelva a contar las filas de la tabla
+    $("#adicionados").text("");
+    var nFilas = $("#mytable tr").length;
+    $("#adicionados").append(nFilas - 1);
+  });
+});
+		</script>
+	</head>
+	
+	<body>
+	
+		<div class="wrapper">
+		
+			<!-- header -->
+			<header>
+				<!-- navigation -->
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="container">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="#"><img class="img-responsive" src="img/logo.png" alt="Logo" /></a>
+						</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="index.html">Inicio</a></li>
+								<li><a href="educacion.html">Educacion</a></li>
+								<li><a href="experiencia.html">Experiencia</a></li>
+							</ul>
+						</div><!-- /.navbar-collapse -->
+					</div><!-- /.container-fluid -->
+				</nav>
+			</header>
+			
+			<!-- banner -->
+			<div class="banner">
+				<div class="container">
+					<!-- heading -->
+					<h1>Resumen Curricular</h1>
+					<h2>Jose Chimbo</h2>
+					<h3>7 de abril 1996</h3>
+				</div>
+			</div>
+			<!-- blog -->
+			<div class="blog" id="blog">
+				<h2 align="center">Educacion</h2>
+
+				<div class="container">
+
+					<table  id="mytable" class="table table-bordered table-hover ">
+						<tr>
+						  <th>año</th>
+						  <th>Institucion</th>
+						  <th>Lugar</th>
+						  <th>Eliminar</th>
+					  
+						</tr>
+						<tr>
+
+							<td>2009</td>
+							<td>Colegio Quince de Octubre</td>
+							<td>Av. Siempre viva</td>
+						  </tr>
+					  </table>
+					  <br>
+					 
+					<form>
+						<h4 >Agregar Estudios</h4>
+					 <div class="form-group">
+					  <p>
+						<label> Ingrese el Año:</label> <br>
+						<input id="año" class="form-control" type="text" placeholder="año..."><br>
+					  </p>
+					  <p>
+						<label>Ingrese la Institucion:</label> <br>
+						<input id="Institucion" class="form-control" type="text" placeholder="Institucion..."><br>
+					  </p>
+					  <p>
+						<label>Ingrese Lugar:</label> <br>
+						<input id="Lugar" class="form-control" type="text" placeholder="Lugar"> <br>
+					  </p>
+					  <button id="adicionar" class="btn btn-success" type="button">Agregar</button>
+					</div>
+				  </form>
+				  </div>
+
+			</div> 
+			<footer>
+				<div class="container">
+					<p><a href="#">Home</a> | <a href="#work">works</a> | <a href="#team">Team</a> | <a href="#contact">Contact</a></p>
+					<div class="social">
+						<a href="#"><i class="fa fa-facebook"></i></a>
+						<a href="#"><i class="fa fa-twitter"></i></a>
+						<a href="#"><i class="fa fa-dribbble"></i></a>
+						<a href="#"><i class="fa fa-linkedin"></i></a>
+						<a href="#"><i class="fa fa-google-plus"></i></a>
+					</div>
+					<!-- copy right -->
+					<!-- This theme comes under Creative Commons Attribution 4.0 Unported. So don't remove below link back -->
+					<p class="copy-right">Copyright &copy; 2014 <a href="#">Your Site</a> | Designed By : <a href="http://www.indioweb.in/portfolio">IndioWeb</a>, All rights reserved. </p>
+				</div>
+			</footer>
+
+		</div>
+		
+		
+		<!-- Javascript files -->
+		<!-- jQuery -->
+		<script src="js/jquery.js"></script>
+		<!-- Bootstrap JS -->
+		<script src="js/bootstrap.min.js"></script>
+		<!-- Respond JS for IE8 -->
+		<script src="js/respond.min.js"></script>
+		<!-- HTML5 Support for IE -->
+		<script src="js/html5shiv.js"></script>
+		<!-- Custom JS -->
+		<script src="js/custom.js"></script>
+	</body>	
+</html>
